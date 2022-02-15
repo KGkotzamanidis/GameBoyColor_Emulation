@@ -139,11 +139,11 @@ class CPU : public MOTHERBOARD{
 		void BIT_u3_r8(uint8_t data, uint8_t bit);
 		void BIT_u3_HL(uint8_t bit);
 
-		void RES_u3_r8(uint8_t& address, uint8_t data);
-		void RES_u3_HL(uint8_t data);
+		void RES_u3_r8(uint8_t& address, uint8_t bit);
+		void RES_u3_HL(uint8_t bit);
 
-		void SET_u3_r8(uint8_t& address, uint8_t data);
-		void SET_u3_HL(uint8_t data);
+		void SET_u3_r8(uint8_t& address, uint8_t bit);
+		void SET_u3_HL(uint8_t bit);
 
 		void SWAP_r8(uint8_t& address);
 		void SWAP_HL();
@@ -255,7 +255,7 @@ class CPU : public MOTHERBOARD{
 		void DEC_SP();
 		void INC_SP();
 
-		void LD_SP_n16(uint16_t datda);
+		void LD_SP_n16(uint16_t data);
 		void LD_n16_SP(uint16_t address);
 		void LD_HL_SP_e8(uint8_t offset);
 		void LD_SP_HL();

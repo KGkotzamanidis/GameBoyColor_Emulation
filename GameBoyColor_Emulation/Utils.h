@@ -1,7 +1,7 @@
 #ifndef _UTILS_H
 #include <cstdint>
 
-enum class byte : uint8_t {
+enum class enum_byte : uint8_t {
 	bit_7 = 7,
 	bit_6 = 6,
 	bit_5 = 5,
@@ -13,9 +13,9 @@ enum class byte : uint8_t {
 	bit_invalid = 255
 };
 
-uint16_t setBit(uint16_t data, byte bit);
-uint16_t clearBit(uint16_t data, byte bit);
-bool isBitSet(uint16_t data, byte bit);
+uint16_t setBit(uint16_t data, enum_byte bit);
+uint16_t clearBit(uint16_t data, enum_byte bit);
+bool isBitSet(uint16_t data, enum_byte bit);
 
 uint16_t FLAG_ZERO = 0x80;
 uint16_t FLAG_SUB = 0x40;
