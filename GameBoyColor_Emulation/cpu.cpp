@@ -12,6 +12,60 @@ CPU::CPU() {
 	isHalted = false;
 }
 
+void CPU::ParseOpcode(uint8_t opCode) {
+	uint8_t value8Low = sendSignal->mem.readRAM(sendSignal->reg.PC + 1);
+	uint8_t value8High = sendSignal->mem.readRAM(sendSignal->reg.PC + 2);
+	uint16_t value16 = value8High << 8 | value8Low;
+
+	switch (opCode) {
+	case 0x00: NOP(); break;
+	case 0x01:LD_r16_n16(sendSignal->reg.BC, value16); break;
+	case 0x02:LD_r16_A(sendSignal->reg.BC); break;
+	case 0x03:INC_r16(sendSignal->reg.BC); break;
+	case 0x04:INC_r8(sendSignal->reg.B); break;
+	case 0x05:DEC_r8(sendSignal->reg.B); break;
+	case 0x06:LD_r8_n8(sendSignal->reg.B, value8Low); break;
+	case 0x07:RLCA(); break;
+	case 0x08:LD_n16_SP(value16); break;
+	case 0x09:ADD_HL_r16(sendSignal->reg.BC); break;
+	case 0x0A:LD_A_r16(sendSignal->reg.BC); break;
+	case 0x0B:DEC_r16(sendSignal->reg.BC); break;
+	case 0x0C:INC_r8(sendSignal->reg.C); break;
+	case 0x0D:DEC_r8(sendSignal->reg.C); break;
+	case 0x0E:LD_r8_n8(sendSignal->reg.C, value8Low); break;
+	case 0x0F:RRC_A(); break;
+	case 0x11:LD_r16_n16(sendSignal->reg.DE, value16); break;
+	case 0x12:LD_r16_A(sendSignal->reg.DE); break;
+	case 0x13:INC_r16(sendSignal->reg.DE); break;
+	case 0x14:INC_r8(sendSignal->reg.D); break;
+	case 0x15:DEC_r8(sendSignal->reg.D); break;
+	case 0x16:LD_r8_n8(sendSignal->reg.D, value8Low); break;
+	case 0x17:RLA(); break;
+	case 0x18:JR_n8(value8Low); break;
+	case 0x19:ADD_HL_r16(sendSignal->reg.DE); break;
+	case 0x1A:LD_A_r16(sendSignal->reg.DE); break;
+	case 0x1B:DEC_r16(sendSignal->reg.DE); break;
+	case 0x1C:INC_r8(sendSignal->reg.E); break;
+	case 0x1D:DEC_r8(sendSignal->reg.E); break;
+	case 0x1F:RR_A(); break;
+	case 0x20:JRNZ_n8(value8Low); break;
+	case 0x21:LD_r16_n16(sendSignal->reg.HL, value16); break;
+	case 0x22:LD_HLI_A(); break;
+	case 0x23:INC_r16(sendSignal->reg.HL); break;
+	case 0x24:INC_r8(sendSignal->reg.H); break;
+	case 0x25:DEC_r8(sendSignal->reg.H); break;
+	case 0x26:LD_r8_n8(sendSignal->reg.H, value8Low);
+	case 0x27:DAA(); break;
+	default:sendSignal->reg.PC += 1; break;
+	}
+}
+
+void CPU::ParseBitOperation(uint8_t opCode) {
+	switch (opCode) {
+	case 0x00:RLC_r8(sendSignal->reg.B); break;
+	}
+}
+
 void CPU::setFlag(int flag, bool state) {
 	if (state) {
 		sendSignal->reg.F |= flag;
@@ -107,7 +161,7 @@ void CPU::AND_A_n8(uint8_t data) {
 
 void CPU::CP(uint8_t& address, uint8_t data) {
 	/*
-	* Nothing for now.
+	* Missing in manual #1.
 	*/
 }
 
@@ -763,7 +817,9 @@ void CPU::JPC_n16(uint16_t address) {
 }
 
 void CPU::JP_CC_n16(uint8_t condition_code, uint16_t address) {
-
+	/*
+	* Missing in manual #2.
+	*/
 }
 
 void CPU::JR(uint8_t data) {
@@ -815,11 +871,15 @@ void CPU::JRC_n8(uint8_t data) {
 }
 
 void CPU::JR_e8(uint8_t offset) {
-
+	/*
+	* Missing in manual #3.
+	*/
 }
 
 void CPU::JR_CC_e8(uint8_t condition_code, uint16_t address) {
-
+	/*
+	* Missing in manual #4.
+	*/
 }
 
 void CPU::RET() {
@@ -876,7 +936,9 @@ void CPU::RETC() {
 }
 
 void CPU::RET_CC(uint8_t condition_code) {
-
+	/*
+	* Missing in manual #5.
+	*/
 }
 
 void CPU::RET_Impl() {
@@ -982,7 +1044,9 @@ void CPU::POP_r16(uint16_t& data) {
 }
 
 void CPU::PUSH_AF() {
-
+	/*
+	* Missing in manual #6.
+	*/
 }
 
 void CPU::PUSH_r16(uint16_t data) {

@@ -62,7 +62,7 @@ class CPU : public MOTHERBOARD{
 		bool isInterruptMasterEnable, isHalted;
 		CPU();
 		void ParseOpcode(uint8_t opCode);
-		void ParseBitOperation(uint8_t op);
+		void ParseBitOperation(uint8_t opCode);
 
 	private:
 		void setFlag(int flag, bool state);
