@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bus.cpp" />
+    <ClCompile Include="cartridge.cpp" />
     <ClCompile Include="cpu.cpp" />
+    <ClCompile Include="EmuBox.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="motherboard.cpp" />
@@ -28,7 +30,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bus.h" />
+    <ClInclude Include="cartridge.h" />
     <ClInclude Include="cpu.h" />
+    <ClInclude Include="EmuBox.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="motherboard.h" />
     <ClInclude Include="Utils.h" />

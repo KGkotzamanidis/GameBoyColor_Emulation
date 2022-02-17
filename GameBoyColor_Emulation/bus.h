@@ -3,9 +3,7 @@
 #include "memory.h"
 class BUS : public CPU{
 	public:
-		BUS();
 		MEM mem;
 		Registers reg;
-	private:
 };
 #endif
