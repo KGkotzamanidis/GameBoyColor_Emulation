@@ -1,3 +1,4 @@
+[!(https://img.shields.io/badge/License-GNU--GPLv3-success)]
 # Our Project.
 Welcome to our Gameboy Color emulator. This project has been created from
 [this guy](https://github.com/solbarda). We will try to make an perfect emulation.
